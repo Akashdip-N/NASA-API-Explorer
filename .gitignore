@@ -1,5 +1,5 @@
 # API Key
-api_key.json
+.env
 
 # dependencies
 *node_modules
