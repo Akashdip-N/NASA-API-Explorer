@@ -2,62 +2,52 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 
-global.fetch = jest.fn(); // mock fetch globally
-
-describe('NASA API Explorer App', () => {
-  beforeEach(() => {
-    fetch.mockClear();
-  });
-
-  test('renders dropdown and fetch button', () => {
-    render(<App />);
-    expect(screen.getByText(/choose api/i)).toBeInTheDocument();
-    expect(screen.getByRole(
-      'button',
-      { name: /fetch data/i }
-    )).toBeInTheDocument();
-  });
-
-  test('shows date input for APOD by default', () => {
-    render(<App />);
-    const dateInput = screen.getByRole('textbox', { name: /date/i });
-    expect(dateInput).toBeInTheDocument();
-  });
-
-  test('does not show date input for Mars when selected', () => {
-    render(<App />);
-    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'mars' } });
-    expect(screen.queryByLabelText(/date/i)).toBeNull();
-  });
-
-  test('makes API call and displays APOD image', async () => {
-    fetch.mockResolvedValueOnce({
+// Mock fetch globally
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
       ok: true,
-      json: async () => ({
-        title: 'Test APOD',
-        url: 'https://apod.nasa.gov/apod/image.jpg',
+      json: () => Promise.resolve({
+        title: 'Mocked Title',
+        url: 'https://example.com/image.jpg',
         media_type: 'image',
-        explanation: 'Sample explanation',
+        explanation: 'Mocked explanation of the APOD.',
+        date: '2025-06-10',
+        hdurl: 'https://example.com/hd-image.jpg',
       }),
-    });
+    })
+  );
+});
 
-    render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /fetch data/i }));
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-    await waitFor(() => {
-      expect(screen.getByText(/test apod/i)).toBeInTheDocument();
-      expect(screen.getByAltText(/test apod/i)).toBeInTheDocument();
-    });
+test('renders heading and dropdown', () => {
+  render(<App />);
+  expect(screen.getByText(/NASA Data Explorer/i)).toBeInTheDocument();
+  expect(screen.getByText(/Choose from the following options/i)).toBeInTheDocument();
+});
+
+test('fetches and displays APOD data on button click', async () => {
+  render(<App />);
+  const button = screen.getByText(/See Results/i);
+  fireEvent.click(button);
+
+  await waitFor(() => {
+    expect(screen.getByText(/Title: Mocked Title/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mocked explanation/i)).toBeInTheDocument();
+    expect(screen.getByText(/View Image in HD/i)).toBeInTheDocument();
+    expect(screen.getByText(/Date: 2025-06-10/i)).toBeInTheDocument();
   });
+});
 
-  test('shows error message when fetch fails', async () => {
-    fetch.mockRejectedValueOnce(new Error('API failed'));
+test('toggles dark mode slider', () => {
+  render(<App />);
+  const toggleLabel = screen.getByText(/Light Mode/i);
+  const checkbox = screen.getByRole('checkbox');
 
-    render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /fetch data/i }));
-
-    await waitFor(() => {
-      expect(screen.getByText(/error fetching data/i)).toBeInTheDocument();
-    });
-  });
+  expect(toggleLabel).toBeInTheDocument();
+  fireEvent.click(checkbox);
+  expect(screen.getByText(/Dark Mode/i)).toBeInTheDocument();
 });

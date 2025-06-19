@@ -54,6 +54,12 @@ app.get('/api/nasa', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 NASA API server running at http://localhost:${PORT}`);
-});
+
+//if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 NASA API server running at http://localhost:${PORT}`);
+  });
+//}
+
+// Export for testing
+//module.exports = app;

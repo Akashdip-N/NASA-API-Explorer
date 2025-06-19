@@ -1,0 +1,25 @@
+{
+  "name": "project-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npx nodemon nasa.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akashdip-N/Project-Code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akashdip-N/Project-Code/issues"
+  },
+  "homepage": "https://github.com/Akashdip-N/Project-Code#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
