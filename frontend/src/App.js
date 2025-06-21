@@ -57,7 +57,7 @@ function App() {
       })
       .catch((err) => {
         if (err.name === 'AbortError') {
-          setError('🛑 The backend took too long to respond. Please try again later.');
+          setError('🛑 Backend is down, please wait for 1 min and try again later 🛑');
         } else {
           setError(err.message.includes('Failed to fetch')
             ? '🚫 Error code 222! Please go through the README file to fix the issue. 🚫'
