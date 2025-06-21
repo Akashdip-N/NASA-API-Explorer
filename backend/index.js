@@ -62,4 +62,4 @@ app.get('/api/nasa', async (req, res) => {
 //}
 
 // Export for testing
-//module.exports = app;
+module.exports = app;
