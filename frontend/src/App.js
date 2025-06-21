@@ -9,6 +9,30 @@ const apiOptions = [
   { value: 'nasa_image', label: 'NASA Image and Video Library' },
 ];
 
+const apiDetails = {
+  apod: {
+    description: 'Get the Astronomy Picture of the Day, along with explanations, images or videos shared by NASA each day.',
+    link: 'https://api.nasa.gov/#apod'
+  },
+  mars: {
+    description: 'Explore images taken by the Mars rovers, like Curiosity and Opportunity, based on Earth date.',
+    link: 'https://api.nasa.gov/#mars-rover-photos'
+  },
+  epic: {
+    description: 'View stunning images of Earth taken by the EPIC camera onboard the NOAA DSCOVR satellite, including daily images and more.',
+    link: 'https://epic.gsfc.nasa.gov/about/'
+  },
+  neo: {
+    description: 'Track Near-Earth Objects (NEOs) and view information on asteroids close to Earth on any given day.',
+    link: 'https://api.nasa.gov/#neo-rest'
+  },
+  nasa_image: {
+    description: 'Search NASA’s vast image and video library for space-related media including photos, audio, and more.',
+    link: 'https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf'
+  }
+};
+
+
 const today = new Date().toISOString().split('T')[0];
 
 function App() {
@@ -173,7 +197,9 @@ function App() {
       <h1>🚀 NASA Data Explorer</h1>
 
       <div className="input-group">
-        <strong>Explore top 5 NASA APIs with real-time data:</strong>
+        <strong className='message'>
+          Explore from a variety of NASA APIs to fetch space-related data!
+        </strong>
         <label><strong>Select from the following API calls</strong></label>
         <select
           className="input"
@@ -188,16 +214,32 @@ function App() {
             <option key={api.value} value={api.value}>{api.label}</option>
           ))}
         </select>
+        {(type === 'apod' || type === 'epic') && (
+          <>
+            <label>
+                {type === 'apod'
+                  ? '📅 Select a date for Astronomy Picture of the Day or continue with today’s date:'
+                  : '🌍 Select a date for Earth imagery from EPIC camera or continue with today’s date:'}
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={params.date || today}
+                onChange={handleChange}
+                max={today}
+                className="input"
+              />
+          </>
+        )}
 
-        {type === 'apod' && (
-          <input
-            type="date"
-            name="date"
-            value={params.date}
-            onChange={handleChange}
-            max={today}
-            className="input"
-          />
+
+        {type && (
+          <div className="description">
+            <p>{apiDetails[type].description}</p>
+            <a href={apiDetails[type].link} target="_blank" rel="noopener noreferrer">
+              🔗 Learn more
+            </a>
+          </div>
         )}
       </div>
 

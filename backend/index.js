@@ -17,7 +17,7 @@ app.get('/api/nasa', async (req, res) => {
 
     switch (type) {
       case 'apod':
-        url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}${date?`&date=${date}`:''}`;
+        url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}${date ? `&date=${date}` : ''}`;
         break;
 
       case 'mars':
@@ -25,7 +25,13 @@ app.get('/api/nasa', async (req, res) => {
         break;
 
       case 'epic':
-        url = `https://api.nasa.gov/EPIC/api/natural/images?api_key=${apiKey}`;
+        if (date) {
+          // Use custom date endpoint for EPIC
+          url = `https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${apiKey}`;
+        } else {
+          // Default to latest images if no date
+          url = `https://api.nasa.gov/EPIC/api/natural/images?api_key=${apiKey}`;
+        }
         break;
 
       case 'neo': {
@@ -61,5 +67,4 @@ app.get('/api/nasa', async (req, res) => {
   });
 //}
 
-// Export for testing
 module.exports = app;

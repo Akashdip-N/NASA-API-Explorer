@@ -1,5 +1,3 @@
-/* === App.css === */
-
 :root {
   --primary-color: #004080;
   --primary-hover: #0059b3;
@@ -8,6 +6,7 @@
   --input-text-color: #121212;
   --card-bg: #ffffff;
   --accent-color: #0077ff;
+  --message-color: rgb(52, 7, 130);
   --error-color: red;
   --border-radius: 10px;
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -17,6 +16,7 @@ body.dark-mode {
   --primary-color: #90caf9;
   --primary-hover: #64b5f6;
   --input-text-color: #121212;
+  --message-color: #90f9e9;
   --text-color: #ffffff;
   --bg-color: #121212;
   --card-bg: #535353;
@@ -76,6 +76,44 @@ h1 {
   outline: none;
 }
 
+.input-group p {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.input-group .message {
+  font-size: 1.5rem;
+  color: var(--message-color);
+  margin-top: -0.5rem;
+}
+
+/* API Description */
+.description {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background-color: rgba(0, 119, 255, 0.07);
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--accent-color);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.description a {
+  color: var(--accent-color);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.description a:hover {
+  text-decoration: underline;
+}
+
 /* Button Area */
 .button-wrapper {
   display: flex;
@@ -88,7 +126,7 @@ h1 {
   padding: 0.6rem 1.5rem;
   background-color: var(--primary-color);
   color: white;
-  margin-top: -0.5rem;
+  margin-top: -0.9rem;
   border: none;
   border-radius: var(--border-radius);
   font-size: 1rem;
@@ -109,7 +147,12 @@ h1 {
 /* Error Message */
 .error {
   color: var(--error-color);
-  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.05);
+  border-left: 4px solid var(--error-color);
+  border-right: 4px solid var(--error-color);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
   text-align: center;
   font-size: 1.2rem;
   margin-top: 1.5rem;
@@ -125,6 +168,12 @@ h1 {
   margin-top: 1rem;
   animation: fadeIn 0.3s ease-in-out;
   text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Card Header */
@@ -161,6 +210,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Toggle Mode */
 .toggle-wrapper {
   display: flex;
   align-items: center;
@@ -222,7 +273,6 @@ a:hover {
 .toggle-label {
   font-size: 0.95rem;
 }
-
 
 /* Animation */
 @keyframes fadeIn {
