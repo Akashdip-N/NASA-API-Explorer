@@ -35,7 +35,7 @@ function App() {
   };
 
   const fetchData = () => {
-    const PORT = 8000;
+    const PORT = 4000;
 
     setLoading(true);
     const query = new URLSearchParams({ type, ...params }).toString();
