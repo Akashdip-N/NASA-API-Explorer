@@ -20,11 +20,10 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   const getDayEmoji = (dateStr) => {
-    const day = new Date(dateStr).getDay(); // 0 = Sunday, 6 = Saturday
-    const emojis = ['🌙', '🌞', '🚀', '🛰️', '🌌', '🌠', '🌍'];
+    const day = new Date(dateStr).getDay();
+    const emojis = ['🌙', '☀️', '🚀', '🛰️', '🌌', '🌠', '🌍'];
     return emojis[day];
   };
-
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
@@ -36,26 +35,35 @@ function App() {
 
   const fetchData = () => {
     const PORT = 4000;
+    const timeout = 5000;
 
     setLoading(true);
+    setError('');
+    setData(null);
+
     const query = new URLSearchParams({ type, ...params }).toString();
 
-    fetch(`http://localhost:${PORT}/api/nasa?${query}`)
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+
+    fetch(`http://localhost:${PORT}/api/nasa?${query}`, { signal: controller.signal })
       .then(async (res) => {
+        clearTimeout(timer);
         const result = await res.json();
         if (!res.ok) {
           throw new Error(result?.error || 'Unexpected backend error');
         }
         setData(result);
-        setError('');
       })
       .catch((err) => {
-        setData(null);
-        setError(
-          err.message.includes('Failed to fetch')
+        if (err.name === 'AbortError') {
+          setError('🛑 The backend took too long to respond. Please try again later.');
+        } else {
+          setError(err.message.includes('Failed to fetch')
             ? '🚫 Error code 222! Please go through the README file to fix the issue. 🚫'
             : `⚠️ ${err.message} ⚠️`
-        );
+          );
+        }
       })
       .finally(() => setLoading(false));
   };
@@ -63,110 +71,89 @@ function App() {
   const renderResult = () => {
     if (!data) return null;
 
-    if (type === 'apod') {
-      return (
-        <div className="card">
-          <h2>Title: {data.title}</h2>
-
-          {data.media_type === 'image' ? (
-            <img src={data.url} alt={data.title} className="image" />
-          ) : (
-            <iframe
-              title="apod-video"
-              width="100%"
-              height="400"
-              src={data.url}
-              allowFullScreen
-            ></iframe>
-          )}
-
-          <p style={{ whiteSpace: 'pre-line', textAlign: 'justify' }}>
-            {data.explanation}
-          </p>
-
-          {data.hdurl && (
-            <p>
-              🔗 <a href={data.hdurl} target="_blank" rel="noopener noreferrer">View Image in HD</a>
-            </p>
-          )}
-
-          <p>{getDayEmoji(data.date)} Date: {data.date}</p>
-          {data.copyright && (
-            <p>© <em>{data.copyright}</em></p>
-          )}
-        </div>
-      );
-    }
-
-    if (type === 'mars') {
-      return (
-        <div>
-          <h2>Mars Rover Photos</h2>
-          {data.photos?.slice(0, 3).map((photo) => (
-            <div key={photo.id} className="card">
-              <img src={photo.img_src} alt="Mars" className="image" />
-              <p>
-                📅 {photo.earth_date} — 📷 {photo.camera.full_name}
-              </p>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    if (type === 'epic') {
-      return (
-        <div>
-          <h2>EPIC Earth Images</h2>
-          {data?.slice(0, 3).map((item) => {
-            const imgUrl = `https://epic.gsfc.nasa.gov/archive/natural/${item.date
-              .split(' ')[0]
-              .replace(/-/g, '/')}/png/${item.image}.png`;
-            return (
-              <div key={item.identifier} className="card">
-                <p>{item.caption}</p>
-                <img src={imgUrl} alt={item.caption} className="image" />
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
-
-    if (type === 'neo') {
-      const objects = Object.values(data.near_earth_objects)[0];
-      return (
-        <div className="card">
-          <h2>Near-Earth Objects (Today)</h2>
-          {objects?.slice(0, 3).map((obj) => (
-            <p key={obj.id}>
-              ☄️ <strong>{obj.name}</strong> — Speed:{' '}
-              {Math.round(obj.close_approach_data[0].relative_velocity.kilometers_per_hour)} km/h
-            </p>
-          ))}
-        </div>
-      );
-    }
-
-    if (type === 'nasa_image') {
-      return (
-        <div>
-          <h2>NASA Image Search (Keyword: Moon)</h2>
-          {data.collection?.items?.slice(0, 3).map((item, idx) => (
-            <div key={idx} className="card">
-              <img
-                src={item.links?.[0]?.href}
-                alt={item.data?.[0]?.title}
-                className="image"
+    switch (type) {
+      case 'apod':
+        return (
+          <div className="card">
+            <h2>{data.title}</h2>
+            {data.media_type === 'image' ? (
+              <img src={data.url} alt={data.title} className="image" />
+            ) : (
+              <iframe
+                title="apod-video"
+                width="100%"
+                height="400"
+                src={data.url}
+                allowFullScreen
               />
-              <p>{item.data?.[0]?.title}</p>
-            </div>
-          ))}
-        </div>
-      );
-    }
+            )}
+            <p style={{ whiteSpace: 'pre-line', textAlign: 'justify' }}>{data.explanation}</p>
+            {data.hdurl && <p>🔗 <a href={data.hdurl} target="_blank" rel="noopener noreferrer">View HD Image</a></p>}
+            <p>{getDayEmoji(data.date)} Date: {data.date}</p>
+            {data.copyright && <p>© <em>{data.copyright}</em></p>}
+          </div>
+        );
 
-    return <pre>{JSON.stringify(data, null, 2)}</pre>;
+      case 'mars':
+        return (
+          <div>
+            <h2>Mars Rover Photos</h2>
+            {data.photos?.slice(0, 3).map(photo => (
+              <div key={photo.id} className="card">
+                <img src={photo.img_src} alt="Mars" className="image" />
+                <p>📅 {photo.earth_date} — 📷 {photo.camera.full_name}</p>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'epic':
+        return (
+          <div>
+            <h2>EPIC Earth Images</h2>
+            {data?.slice(0, 3).map(item => {
+              const imgUrl = `https://epic.gsfc.nasa.gov/archive/natural/${item.date
+                .split(' ')[0]
+                .replace(/-/g, '/')}/png/${item.image}.png`;
+              return (
+                <div key={item.identifier} className="card">
+                  <p>{item.caption}</p>
+                  <img src={imgUrl} alt={item.caption} className="image" />
+                </div>
+              );
+            })}
+          </div>
+        );
+
+      case 'neo':
+        const objects = Object.values(data.near_earth_objects)[0];
+        return (
+          <div className="card">
+            <h2>Near-Earth Objects (Today)</h2>
+            {objects?.slice(0, 3).map(obj => (
+              <p key={obj.id}>
+                ☄️ <strong>{obj.name}</strong> — Speed: {Math.round(obj.close_approach_data[0].relative_velocity.kilometers_per_hour)} km/h
+              </p>
+            ))}
+          </div>
+        );
+
+      case 'nasa_image':
+        return (
+          <div>
+            <h2>NASA Image Search (Keyword: Moon)</h2>
+            {data.collection?.items?.slice(0, 3).map((item, idx) => (
+              <div key={idx} className="card">
+                <img src={item.links?.[0]?.href} alt={item.data?.[0]?.title} className="image" />
+                <p>{item.data?.[0]?.title}</p>
+              </div>
+            ))}
+          </div>
+        );
+
+      default:
+        return <pre>{JSON.stringify(data, null, 2)}</pre>;
+    }
   };
 
   return (
@@ -178,16 +165,16 @@ function App() {
             checked={darkMode}
             onChange={() => setDarkMode(!darkMode)}
           />
-          <span className="slider"></span>
+          <span className="slider" />
         </label>
         <span className="toggle-label">{darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>
       </div>
 
-
       <h1>🚀 NASA Data Explorer</h1>
 
       <div className="input-group">
-        <label><strong>Choose from the following options</strong></label>
+        <strong>Explore top 5 NASA APIs with real-time data:</strong>
+        <label><strong>Select from the following API calls</strong></label>
         <select
           className="input"
           value={type}
@@ -197,10 +184,8 @@ function App() {
             setData(null);
           }}
         >
-          {apiOptions.map((api) => (
-            <option key={api.value} value={api.value}>
-              {api.label}
-            </option>
+          {apiOptions.map(api => (
+            <option key={api.value} value={api.value}>{api.label}</option>
           ))}
         </select>
 
@@ -217,11 +202,7 @@ function App() {
       </div>
 
       <div className="button-wrapper">
-        <button
-          className="button"
-          onClick={fetchData}
-          disabled={loading}
-        >
+        <button className="button" onClick={fetchData} disabled={loading}>
           {loading ? 'Fetching...' : 'See Results'}
         </button>
       </div>
