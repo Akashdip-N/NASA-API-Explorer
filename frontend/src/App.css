@@ -88,6 +88,13 @@ h1 {
   margin-top: -0.5rem;
 }
 
+.api-description-heading {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 -0.25rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
 /* API Description */
 .description {
   font-size: 0.95rem;
@@ -96,8 +103,7 @@ h1 {
   padding: 0.75rem 1rem;
   border-left: 4px solid var(--accent-color);
   border-radius: 6px;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin: -0.5rem 0 1rem 0;
   line-height: 1.6;
   max-width: 600px;
 }
@@ -118,7 +124,7 @@ h1 {
 .button-wrapper {
   display: flex;
   justify-content: flex-start;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 /* Button */
@@ -273,6 +279,14 @@ a:hover {
 .toggle-label {
   font-size: 0.95rem;
 }
+
+.slider_menu {
+  width: 100%;
+  max-width: 300px;
+  margin: 0.5rem 0 -1rem;
+  accent-color: var(--accent-color);
+}
+
 
 /* Animation */
 @keyframes fadeIn {

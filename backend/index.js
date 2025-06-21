@@ -40,9 +40,32 @@ app.get('/api/nasa', async (req, res) => {
         break;
       }
 
-      case 'nasa_image':
-        url = `https://images-api.nasa.gov/search?q=moon`;
-        break;
+      case 'nasa_image': {
+        const q = req.query.q || 'moon';
+        const media_type = req.query.media_type || 'image';
+        const searchUrl = `https://images-api.nasa.gov/search?q=${q}&media_type=${media_type}`;
+
+        const searchRes = await axios.get(searchUrl);
+        const items = searchRes.data.collection?.items?.slice(0, 3);
+
+        // For video/audio, fetch the real asset URLs
+        if (media_type === 'video' || media_type === 'audio') {
+          const enrichedItems = await Promise.all(items.map(async (item) => {
+            const nasa_id = item.data?.[0]?.nasa_id;
+            const assetRes = await axios.get(`https://images-api.nasa.gov/asset/${nasa_id}`);
+            const actualUrls = assetRes.data.collection.items;
+
+            return {
+              ...item,
+              actualAssets: actualUrls,
+            };
+          }));
+
+          return res.json({ collection: { items: enrichedItems } });
+        }
+
+        return res.json(searchRes.data);
+      }
 
       default:
         return res.status(400).json({ error: 'Invalid or unsupported API type.' });
