@@ -61,15 +61,10 @@ function App() {
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
-    // Enable dark mode at or after 6:30 PM
-    if (hours > 18 || (hours === 18 && minutes >= 30)) {
+    if (hours > 18 && hours < 6)
       setDarkMode(true);
-    }
-
-    // Enable light mode before 6:30 AM
-    else if (hours < 6 || (hours === 6 && minutes < 30)) {
+    else if (hours > 6 && hours < 18)
       setDarkMode(false);
-    }
   }, []);
 
 
@@ -161,15 +156,21 @@ function App() {
         return (
           <div>
             <h2>EPIC Earth Images</h2>
-            {data?.slice(0, 3).map(item => {
-              const imgUrl = `https://epic.gsfc.nasa.gov/archive/natural/${item.date.split(' ')[0].replace(/-/g, '/')}/png/${item.image}.png`;
-              return (
-                <div key={item.identifier} className="card">
-                  <p>{item.caption}</p>
-                  <img src={imgUrl} alt={item.caption} className="image" />
-                </div>
-              );
-            })}
+            {data?.length === 0 ? (
+              <p className="error">🛑 No data available for the selected date. Please select another date. 🛑</p>
+            ) : (
+              data?.slice(0, 3).map(item => {
+                const imgUrl = `https://epic.gsfc.nasa.gov/archive/natural/${item.date
+                  .split(' ')[0]
+                  .replace(/-/g, '/')}/png/${item.image}.png`;
+                return (
+                  <div key={item.identifier} className="card">
+                    <p>{item.caption}</p>
+                    <img src={imgUrl} alt={item.caption} className="image" />
+                  </div>
+                );
+              })
+            )}
           </div>
         );
 
