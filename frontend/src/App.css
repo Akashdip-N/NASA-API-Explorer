@@ -43,7 +43,7 @@ body {
 /* Header */
 h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: -2rem 0 2rem;
   font-size: 2rem;
   color: var(--primary-color);
 }
@@ -53,12 +53,12 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
   align-items: flex-start;
 }
 
 /* Dropdown and Input Fields */
-.input {
+.input,
+.date {
   padding: 0.6rem 1rem;
   font-size: 1rem;
   border-radius: var(--border-radius);
@@ -85,14 +85,18 @@ h1 {
 .input-group .message {
   font-size: 1.5rem;
   color: var(--message-color);
-  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .api-description-heading {
   font-size: 1.1rem;
-  margin: 0.5rem 0 -0.25rem;
+  margin: 0.3rem 0 0.3rem 0;
   color: var(--primary-color);
   font-weight: 600;
+}
+
+.date-label{
+  margin: -1rem 0 0 -0.2rem;
 }
 
 /* API Description */
@@ -283,7 +287,7 @@ a:hover {
 .slider_menu {
   width: 100%;
   max-width: 300px;
-  margin: 0.5rem 0 -1rem;
+  margin: -0.5rem 0 -1rem;
   accent-color: var(--accent-color);
 }
 
@@ -302,6 +306,16 @@ a:hover {
 
 /* Responsive */
 @media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+    margin-top: -0.5rem;
+  }
+
+  .input-group .message {
+    font-size: 1.2rem;
+    margin-top: -2rem;
+  }
+
   .container {
     padding: 1rem;
   }
@@ -317,5 +331,6 @@ a:hover {
   .select,
   .input {
     width: 100%;
+    margin: -0.5rem;
   }
 }

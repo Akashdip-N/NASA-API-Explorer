@@ -35,7 +35,7 @@ const apiDetails = {
 const today = new Date().toISOString().split('T')[0];
 
 function App() {
-  const [type, setType] = useState('apod');
+  const [type, setType] = useState('');
   const [params, setParams] = useState({ date: today });
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
@@ -249,24 +249,31 @@ function App() {
             setData(null);
           }}
         >
+          <option value="" disabled>
+            -- Select an API to explore --
+          </option>
           {apiOptions.map(api => (
-            <option key={api.value} value={api.value}>{api.label}</option>
+            <option key={api.value} value={api.value}>
+              {api.label}
+            </option>
           ))}
         </select>
 
-        <h3 className="api-description-heading">API Description</h3>
         {type && (
-          <div className="description">
-            <p>{apiDetails[type].description}</p>
-            <a href={apiDetails[type].link} target="_blank" rel="noopener noreferrer">
-              🔗 Learn more
-            </a>
-          </div>
+          <>
+            <h3 className="api-description-heading">API Description</h3>
+            <div className="description">
+              <p>{apiDetails[type].description}</p>
+              <a href={apiDetails[type].link} target="_blank" rel="noopener noreferrer">
+                🔗 Learn more
+              </a>
+            </div>
+          </>
         )}
 
         {(type === 'apod' || type === 'epic') && (
           <>
-            <label>
+            <label className='date-label'>
               {type === 'apod'
                 ? '📅 Select a date for Astronomy Picture of the Day or continue with today’s date:'
                 : '🌍 Select a date for Earth imagery from EPIC camera or continue with today’s date:'}
@@ -321,11 +328,14 @@ function App() {
         )}
       </div>
 
-      <div className="button-wrapper">
-        <button className="button" onClick={fetchData} disabled={loading}>
-          {loading ? 'Fetching...' : 'See Results'}
-        </button>
-      </div>
+      {type && (
+        <div className="button-wrapper">
+          <button className="button" onClick={fetchData} disabled={loading}>
+            {loading ? 'Fetching...' : 'See Results'}
+          </button>
+        </div>
+      )}
+
 
       <div className="result">
         {error && <p className="error">{error}</p>}
