@@ -192,32 +192,36 @@ function App() {
         return (
           <div>
             <h2>NASA Media Search: {submittedQuery || 'Moon'}</h2>
-            {data.collection?.items?.map((item, idx) => {
-              const title = item.data?.[0]?.title;
-              const description = item.data?.[0]?.description;
-              const thumb = item.links?.[0]?.href;
-              const assets = item.actualAssets;
+            {data?.collection?.items?.length === 0 ? (
+              <p className="error">🛑 No media found for the given keyword. Please try another search term or select another file type.</p>
+            ) : (
+              data?.collection?.items?.map((item, idx) => {
+                const title = item.data?.[0]?.title;
+                const description = item.data?.[0]?.description;
+                const thumb = item.links?.[0]?.href;
+                const assets = item.actualAssets;
 
-              return (
-                <div key={idx} className="card">
-                  <h3>{title}</h3>
-                  {mediaType === 'image' && <img src={thumb} alt={title} className="image" />}
-                  {mediaType === 'video' && assets?.length > 0 && (
-                    <video controls width="100%">
-                      <source src={assets.find(a => a.href.endsWith('.mp4'))?.href} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
-                  {mediaType === 'audio' && assets?.length > 0 && (
-                    <audio controls>
-                      <source src={assets.find(a => a.href.endsWith('.mp3'))?.href} type="audio/mpeg" />
-                      Your browser does not support the audio tag.
-                    </audio>
-                  )}
-                  <p>{description}</p>
-                </div>
-              );
-            })}
+                return (
+                  <div key={idx} className="card">
+                    <h3>{title}</h3>
+                    {mediaType === 'image' && <img src={thumb} alt={title} className="image" />}
+                    {mediaType === 'video' && assets?.length > 0 && (
+                      <video controls width="100%">
+                        <source src={assets.find(a => a.href.endsWith('.mp4'))?.href} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    )}
+                    {mediaType === 'audio' && assets?.length > 0 && (
+                      <audio controls>
+                        <source src={assets.find(a => a.href.endsWith('.mp3'))?.href} type="audio/mpeg" />
+                        Your browser does not support the audio tag.
+                      </audio>
+                    )}
+                    <p>{description}</p>
+                  </div>
+                );
+              })
+            )}
           </div>
         );
 
@@ -321,7 +325,7 @@ function App() {
             <input
               type="text"
               className="input"
-              placeholder="e.g., Moon, Mars, Earth..."
+              placeholder="e.g., Moon, Earth, Apollo Mission..etc"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
