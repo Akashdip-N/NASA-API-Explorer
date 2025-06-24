@@ -7,6 +7,71 @@ const app = express();
 const PORT = 4000;
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.post('/api/rating', async (req, res) => {
+  const { Rating, Feedback } = req.body;
+
+  if (!Rating || !Feedback) {
+    return res.status(400).json({ error: 'Missing rating or feedback.' });
+  }
+
+  const scriptURL = process.env.FEEDBACK_SHEET_URL;
+
+  try {
+    const response = await axios.post(
+      scriptURL,
+      new URLSearchParams({Rating, Feedback }).toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+
+    res.status(200).json({ message: 'Feedback submitted successfully.' });
+  } catch (error) {
+    console.error('Feedback submit error:', error.message);
+    res.status(500).json({ error: 'Failed to submit feedback.', detail: error.message });
+  }
+});
+
+app.post('/api/contact', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'All fields are required.' });
+  }
+
+  const scriptURL = process.env.CONTACT_US_URL;
+
+  try {
+    const response = await axios.post(
+      scriptURL,
+      new URLSearchParams({
+        Name: name,
+        Email: email,
+        Given_message: message,
+      }).toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+
+    res.status(200).json({ message: 'Message submitted successfully.' });
+  } catch (error) {
+    console.error('Contact form submit error:', error.message);
+    res.status(500).json({ error: 'Failed to submit message.', detail: error.message });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});
+
 
 app.get('/api/nasa', async (req, res) => {
   const apiKey = process.env.NASA_API_KEY;

@@ -1,0 +1,222 @@
+:root {
+  --background-color: #d7d7d7;
+  --hover-color: #2a4f74;
+  --footer-text-color: #022f5c;
+  --text-color: #000000;
+  --primary-color: #022f5c;
+}
+
+body.dark-mode {
+  --background-color: #3a3a3a;
+  --hover-color: #73b0e3;
+  --footer-text-color: #9fd4ff;
+  --text-color: #ffffff;
+  --primary-color: #73b0e3;
+}
+
+.footer {
+  background-color: var(--background-color);
+  padding: 2.5rem 1rem;
+  font-family: 'Markazi Text', serif;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  gap: 2.5rem;
+}
+
+/* Logo and Branding */
+.logo-and-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 220px;
+}
+
+.logo-and-text img {
+  max-width: 150px;
+  height: auto;
+}
+
+.logo-and-text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: var(--footer-text-color);
+}
+
+/* Dark Mode Toggle Section */
+.darkmode-toggle {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.darkmode-toggle h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--footer-text-color);
+}
+
+.toggle-label {
+  font-size: 0.95rem;
+  color: var(--footer-text-color);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.slider-icon {
+  position: absolute;
+  left: 4px;
+  bottom: 3px;
+  height: 24px;
+  width: 24px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+.switch input:checked + .slider .slider-icon {
+  transform: translateX(28px);
+}
+
+/* Social Media Section */
+.social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.social-media h4 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--footer-text-color);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.social-media ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-media ul li a {
+  font-size: 36px;
+  color: var(--text-color);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-media ul li a:hover {
+  transform: scale(1.1);
+  color: var(--hover-color);
+}
+
+/* Tablet View */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 0 20px;
+  }
+
+  .logo-and-text {
+    justify-content: center;
+  }
+
+  .logo-and-text h1 {
+    font-size: 2rem;
+  }
+
+  .darkmode-toggle h2 {
+    font-size: 1rem;
+  }
+
+  .social-media h4 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .logo-and-text img {
+    max-width: 120px;
+  }
+
+  .logo-and-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .social-media ul li a {
+    font-size: 28px;
+  }
+
+  .slider {
+    width: 50px;
+    height: 26px;
+  }
+
+  .slider-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .switch input:checked + .slider .slider-icon {
+    transform: translateX(24px);
+  }
+}
