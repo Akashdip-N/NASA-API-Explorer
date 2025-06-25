@@ -224,12 +224,11 @@ a {
   accent-color: var(--accent-color);
 }
 
-
 .result-wrapper {
   max-height: 100vh;
   overflow-y: auto;
   margin-top: 1rem;
-  padding-right: 0.5rem; /* for scrollbar space */
+  padding-right: 0.7rem; /* for scrollbar space */
 }
 
 /* Optional: hide scrollbar in Webkit browsers */
@@ -309,16 +308,19 @@ a {
     box-shadow: 0 8px 24px rgba(0, 119, 255, 0.15);
   }
 
-
   .description {
     font-size: 0.95rem;
     padding: 0.5rem;
+  }
+  
+  .description p{
+    font-size: 1rem;
   }
 
   .button {
     width: 100%;
     font-size: 1rem;
-    margin-top: 1rem;
+    margin-top: -0.3rem;
   }
 
   .result-wrapper::-webkit-scrollbar {
