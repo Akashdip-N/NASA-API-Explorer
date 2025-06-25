@@ -115,11 +115,11 @@ body.dark-mode{
 @media (max-width: 768px) {
 
   .instructions_wrapper {
+    margin-top: -4rem;
     flex-direction: column;
     align-items: left;
     padding: 1rem;
   }
-
 
   .instructions-and-image {
     flex-direction: column;
@@ -132,7 +132,7 @@ body.dark-mode{
   }
 
   .welcome {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   .instructions_sub {

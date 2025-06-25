@@ -17,7 +17,7 @@ body.dark-mode {
 body {
   margin: 0;
   background-color: var(--bg-color);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Markazi Text', serif;
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -121,7 +121,7 @@ body {
   cursor: pointer;
   padding: 0.5rem;
   margin-top: -1rem;
-  margin-right: 1rem;
+  margin-left: 2rem;
   z-index: 2;
 }
 
@@ -129,7 +129,7 @@ body {
   height: 3px;
   width: 25px;
   background-color: var(--text-color);
-  margin: 4px 0;
+  margin: 2px 0;
   transition: all 0.3s ease;
 }
 
@@ -149,8 +149,12 @@ body {
     justify-content: flex-start;
   }
 
+  .logo{
+    width: 60px;
+  }
+
   .logo-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .hamburger {
