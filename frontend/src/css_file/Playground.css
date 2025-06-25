@@ -237,11 +237,17 @@ a {
   width: 10px;
 }
 
+.result-wrapper::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-right: 1rem; /* Visually shifts last element away from scrollbar */
+}
+
 .result-wrapper::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-color);
   border-radius: 10px;
 }
-
 
 /* Animation */
 @keyframes fadeIn {
@@ -312,7 +318,7 @@ a {
     font-size: 0.95rem;
     padding: 0.5rem;
   }
-  
+
   .description p{
     font-size: 1rem;
   }
