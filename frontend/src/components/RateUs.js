@@ -2,7 +2,10 @@ import { useState, useRef } from 'react';
 import '../css_file/RateUs.css';
 
 function RateUs() {
-  const PORT = 4000;
+  // PORT number to connect to the backend server
+  const PORT = 5000;
+  const API_URL = `http://localhost:${PORT}`;
+
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -14,7 +17,7 @@ function RateUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`http://localhost:${PORT}/api/rating`, {
+    fetch(`${API_URL}/api/rating`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -31,7 +34,7 @@ function RateUs() {
       })
       .catch((err) => {
         console.error('Error submitting feedback:', err);
-        alert('Something went wrong. Please try again later.');
+        alert('🚫 Error code 222! Please go through the README file to fix the issue. 🚫');
       })
       .finally(() => {
         setLoading(false);

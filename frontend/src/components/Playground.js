@@ -1,6 +1,7 @@
 import React, { useState, useEffect, use } from 'react';
 import '../css_file/Playground.css';
 
+
 const apiOptions = [
   { value: 'apod', label: 'Astronomy Picture of the Day' },
   { value: 'mars', label: 'Mars Rover Photos' },
@@ -39,7 +40,6 @@ function Playground({ darkMode }) {
   const formattedYesterday = yesterday.toISOString().split('T')[0];
   console.log(formattedYesterday);
 
-
   const [type, setType] = useState('');
   const [params, setParams] = useState({ date: today });
   const [data, setData] = useState(null);
@@ -65,9 +65,11 @@ function Playground({ darkMode }) {
   };
 
   const fetchData = () => {
+    // PORT number to connect to the backend server
     const PORT = 4000;
-    const timeout = 5000;
+    const API_URL = `http://localhost:${PORT}`;
 
+    const timeout = 5000;
     setLoading(true);
     setError('');
     setData(null);
@@ -103,7 +105,7 @@ function Playground({ darkMode }) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeout);
 
-    fetch(`http://localhost:${PORT}/api/nasa?${query}`, { signal: controller.signal })
+    fetch(`${API_URL}/api/nasa?${query}`, { signal: controller.signal })
       .then(async (res) => {
         clearTimeout(timer);
         const result = await res.json();

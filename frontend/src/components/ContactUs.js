@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import '../css_file/ContactUs.css';
 
 function ContactUs() {
+  // PORT number to connect to the backend server
+  const PORT = 5000;
+  const API_URL = `http://localhost:${PORT}`;
+
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,7 +18,7 @@ function ContactUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch('http://localhost:4000/api/contact', {
+    fetch(`${API_URL}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -33,7 +37,7 @@ function ContactUs() {
       })
       .catch((err) => {
         console.error('Error submitting contact form:', err);
-        alert('Something went wrong. Please try again later.');
+        alert('🚫 Error code 222! Please go through the README file to fix the issue. 🚫');
       })
       .finally(() => {
         setLoading(false);
