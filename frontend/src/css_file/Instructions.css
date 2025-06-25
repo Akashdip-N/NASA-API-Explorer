@@ -1,12 +1,34 @@
+:root{
+    --note-color: #ff0000;
+}
+
+body.dark-mode{
+    --note-color: #ff1904;
+}
+
 .instructions_wrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     padding: 2rem;
-    margin-top: -8rem;
+    margin-top: -5rem;
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
+}
+
+.instructions-and-image {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.hq-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    border-radius: 10px;
 }
 
 .instructions-container {
@@ -16,29 +38,33 @@
     box-sizing: border-box;
 }
 
-.instructions-container .instructions-content {
+.instructions-container{
     margin-top: -1.5rem;
     padding: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
 }
 
-.instructions_main {
+.instructions-container ol {
     font-size: 1.5rem;
     line-height: 1.5;
     font-weight: 700;
 }
 
-.instructions_main h1{
+.welcome{
     font-size: 2.5rem;
     margin-bottom: -1rem;
+    margin: 1rem;
 }
 
-.instructions_main h1 strong{
+.welcome strong{
     color: var(--h1-color);
 }
 
 .instructions_sub{
     font-size: 1.2rem;
     margin-top: 0.5rem;
+    font-weight: 700;
 }
 
 .instructions-container ol {
@@ -47,24 +73,42 @@
 
 .instructions-container li {
     font-size: 1.2rem;
-    font-weight: Semi Bold;
+    font-weight: 100;
 }
 
 .instructions-container strong {
     color: var(--primary-color);
 }
 
-.instructions-container .enjoy {
+.instructions-content .note strong{
+    color: var(--note-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.enjoy {
+    margin-top: 0rem;
     font-size: 1.2rem;
     color: var(--primary-color);
     font-weight: 700;
 }
 
-.hq-image {
-    width: 100%;
-    height: auto;
-    max-width: 600px;
-    border-radius: 10px;
+.important{
+  margin-top: -1em;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.important strong{
+  color: var(--primary-color);
+}
+
+.note {
+    font-size: 1.2rem;
+    color: var(--note-color);
+    font-weight: 700;
+    margin-top: -0.2rem;
 }
 
 /* Responsive Design */
@@ -76,22 +120,27 @@
     padding: 1rem;
   }
 
-  .instructions-container {
-    margin-left: 0;
+
+  .instructions-and-image {
+    flex-direction: column;
     width: 100%;
   }
 
-  .instructions-container .instructions-content {
-    padding: 0.5rem;
+  .instructions-container {
+    margin: -2.5rem 0 0 0;
+    width: 100%;
   }
 
-  .instructions_main h1 {
+  .welcome {
     font-size: 2rem;
   }
 
   .instructions_sub {
     font-size: 1rem;
-    margin-bottom: 1rem;
+  }
+
+  .instructions-container p {
+    margin-bottom: -0.5rem;
   }
 
   .instructions-container li {
@@ -106,7 +155,7 @@
 
   .image-container {
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: -1rem;
     display: flex;
   }
 
@@ -115,5 +164,9 @@
     height: auto;
     border-radius: 10px;
   }
-}
 
+  .important {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+  }
+}

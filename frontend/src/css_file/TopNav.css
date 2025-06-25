@@ -29,9 +29,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap; /* prevents wrapping */
+  flex-wrap: nowrap;
   padding: 2rem 1rem;
-  gap: 2rem; /* optional: some breathing room between sections */
+  gap: 2rem;
   overflow: hidden;
 }
 
@@ -120,6 +120,7 @@ body {
   flex-direction: column;
   cursor: pointer;
   padding: 0.5rem;
+  margin-top: -1rem;
   margin-right: 1rem;
   z-index: 2;
 }
@@ -169,9 +170,9 @@ body {
     padding: 0;
     width: 100%;
     background-color: var(--bg-color);
-    border-top: 1px solid #ddd;
-    margin-top: 0.5rem;
-    margin-bottom: 3.5rem;
+    border-top: 5px solid #ddd;
+    margin-top: -3rem;
+    margin-bottom: 0.3rem;
     overflow: hidden;
     max-height: 0;
     opacity: 0;
@@ -180,7 +181,7 @@ body {
   }
 
   .nav-links.open {
-    max-height: 500px; /* enough to show all links */
+    max-height: 12rem;
     padding: 1rem 0;
     opacity: 1;
     transform: translateY(0);

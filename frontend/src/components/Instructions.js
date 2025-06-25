@@ -4,52 +4,53 @@ import image_light from '../icons_assets/nasa_light_mode.jpg';
 
 function Instructions({ darkMode }) {
   return (
-    <section className="instructions_wrapper" id="instructions">
-      <div className="instructions-container">
-        <div className="instructions-content">
-          <p className="instructions_main">
-            <h1 className='welcome'>
-              Welcome to the <strong>NASA Data Explorer</strong>!
-            </h1>
-            <br />
-            <p className="instructions_sub">
-              Before you embark on your journey through the cosmos. <br>
-              </br>
-              Here are some quick instructions to help you navigate this application effectively:
-            </p>
+    <div className="instructions_wrapper" id="instructions">
+      <h1 className='welcome'>
+        Welcome to the <strong>NASA Data Explorer</strong>!
+      </h1>
+      <div className='instructions-and-image'>
+        <div className='instructions-container'>
+          <p className="instructions_sub">
+            Before you begin your journey through the cosmos,<br />
+            here are a few quick instructions to help you navigate the application effectively:
           </p>
           <ol>
             <li>
-              This application utilizes official <strong>NASA APIs</strong> to fetch real-time data directly from their open data portal.
+              This application uses official <strong>NASA APIs</strong> to fetch real-time data directly from NASA’s open data portal.
             </li>
             <li>
-              Visit the <a href="#playground"><strong>Playground</strong></a> section to explore different APIs available for public use.
-            </li>
-
-            <li>
-              For each API, you would see a small description of what it does, and you can click on the <strong>Learn more</strong> option to get more details about that API.
+              Visit the <a href="#playground"><strong>Playground</strong></a> section to explore various publicly available APIs.
             </li>
             <li>
-              Some APIs require a <strong>date</strong> parameter — either <strong>select</strong> your preferred <strong>date</strong>, or simply use the <strong>preselected</strong> date.
+              Each API includes a short description, and you can click on <strong>Learn more</strong> for detailed information about that specific API.
             </li>
             <li>
-              Need assistance? Visit the <a href='#contact_us'><strong>Contact Us</strong></a> section for help or queries.
+              Some APIs require a <strong>date</strong> parameter — either <strong>select</strong> your preferred <strong>date</strong> or use the <strong>default</strong> date provided.
             </li>
             <li>
-              Before you leave, please take a moment to <a href='#rateus'><strong>rate your experience</strong></a> in the Rate Us section — your feedback matters!
+              Need help? Head over to the <a href='#contact_us'><strong>Contact Us</strong></a> section for assistance or inquiries.
+            </li>
+            <li>
+              Before leaving, please take a moment to <a href='#rateus'><strong>rate your experience</strong></a> — your feedback is highly appreciated!
             </li>
           </ol>
-          <p className="enjoy">🚀 Enjoy your journey through space and data!</p>
-          </div>
+        </div>
+        <div className="image-container">
+          <img
+            src={darkMode ? image_dark : image_light}
+            alt="NASA Themed Artwork"
+            className="hq-image"
+          />
+        </div>
       </div>
-      <div className="image-container">
-        <img
-          src={darkMode ? image_dark : image_light}
-          alt="NASA Themed Artwork"
-          className="hq-image"
-        />
-      </div>
-    </section>
+      <p className='important'>
+        <strong>Important:</strong> This application is built purely for educational purposes and is not officially affiliated with NASA.
+      </p>
+      <p className='note'>
+        <strong>Note:</strong> This app is hosted using a free backend service. If you encounter an error saying "Backend is down," please wait for about a minute and try again — the backend will restart shortly. We appreciate your patience!
+      </p>
+      <p className="enjoy">🚀 Enjoy your journey through space and data!</p>
+    </div>
   );
 }
 
