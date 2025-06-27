@@ -1,7 +1,7 @@
 {
-  "name": "project-code",
+  "name": "nasa-api-explorer",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is a fullstack React + Express.js application that allows users to explore various NASA APIs such as:- * Astronomy Picture of the Day * Mars Rover Photos * EPIC Earth Imagery * FInding the Near-Earth Objects speed. * Searching the NASA Image and Video Library.",
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
@@ -11,16 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Akashdip-N/Project-Code.git"
+    "url": "git+https://github.com/Akashdip-N/NASA-API-Explorer.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Akashdip-N/Project-Code/issues"
+    "url": "https://github.com/Akashdip-N/NASA-API-Explorer/issues"
   },
-  "homepage": "https://github.com/Akashdip-N/Project-Code#readme",
+  "homepage": "https://github.com/Akashdip-N/NASA-API-Explorer#readme",
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.2.0",
+    "kill-port": "^2.0.1",
+    "nodemon": "^3.1.10"
   }
 }
