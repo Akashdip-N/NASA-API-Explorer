@@ -17,7 +17,7 @@ app.post('/api/rating', async (req, res) => {
     return res.status(400).json({ error: 'Missing rating or feedback.' });
   }
 
-  const scriptURL = process.env.FEEDBACK_SHEET_URL;
+  const scriptURL = process.env.RATING_SHEET_URL;
 
   try {
     const response = await axios.post(
@@ -148,7 +148,7 @@ app.get('/api/nasa', async (req, res) => {
   }
 });
 
-
+// Uncomment the following lines to test the backend server directly
 //if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 NASA API server running at http://localhost:${PORT}`);
