@@ -9,7 +9,7 @@ function Footer({ darkMode, setDarkMode }) {
             <nav className="footer">
                 <div className="footer-content">
                     <div className="logo-and-text">
-                        <img src={logo} className="footer-logo" />
+                        <img src={logo} className="footer-logo" alt='logo_footer'/>
                         <h1 className="logo-text">DATA EXPLORER</h1>
                     </div>
                     <div className='darkmode-toggle'>
@@ -32,10 +32,46 @@ function Footer({ darkMode, setDarkMode }) {
                     <div className="social-media">
                         <h4>Follow Us On</h4>
                         <ul className="social-icons">
-                            <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} /></a></li>
-                            <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a></li>
-                            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a></li>
-                            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a></li>
+                            <li>
+                                <a
+                                    href="https://www.facebook.com"
+                                    target="_blank"
+                                    aria-label="Facebook"
+                                    rel="noopener noreferrer"
+                                >
+                                    <FontAwesomeIcon icon={faFacebook} />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.twitter.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Twitter"
+                                >
+                                    <FontAwesomeIcon icon={faTwitter} />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.instagram.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Instagram"
+                                >
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn"
+                                >
+                                    <FontAwesomeIcon icon={faLinkedin} />
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

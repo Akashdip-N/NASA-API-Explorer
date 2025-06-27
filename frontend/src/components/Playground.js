@@ -1,7 +1,6 @@
 import React, { useState, useEffect, use } from 'react';
 import '../css_file/Playground.css';
 
-
 const apiOptions = [
   { value: 'apod', label: 'Astronomy Picture of the Day' },
   { value: 'mars', label: 'Mars Rover Photos' },
@@ -243,7 +242,7 @@ function Playground({ darkMode }) {
       <div className="playground">
         <div className="input-group">
           <strong className="message">Welcome to the Playground</strong>
-          <label><strong>Select from one of the following API calls</strong></label>
+          <label><strong>Select one of the following API calls</strong></label>
           <select
             className="input"
             value={type}
@@ -289,12 +288,13 @@ function Playground({ darkMode }) {
 
           {(type === 'apod') && (
             <>
-              <label className='date-label'>
+              <label className='date-label' htmlFor="apod-date">
                 {type === 'apod'
                   ? '📅 Select a date for Astronomy Picture of the Day or continue with today’s date:'
                   : '🌍 Select a date for Earth imagery from EPIC camera or continue with today’s date:'}
               </label>
               <input
+                id="apod-date"
                 type="date"
                 name="date"
                 value={params.date || today}
@@ -341,8 +341,13 @@ function Playground({ darkMode }) {
 
           {type === 'nasa_image' && (
             <>
-              <label><strong>Choose Media Type:</strong></label>
-              <select className="input" value={mediaType} onChange={(e) => setMediaType(e.target.value)}>
+              <label htmlFor="mediaType">
+                <strong>Choose Media Type:</strong>
+              </label>
+              <select
+                className="input"
+                value={mediaType}
+                onChange={(e) => setMediaType(e.target.value)}>
                 <option value="image">Image</option>
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>

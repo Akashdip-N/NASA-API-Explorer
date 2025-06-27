@@ -19,7 +19,7 @@ function Instructions({ darkMode }) {
               This application uses official <strong>NASA APIs</strong> to fetch real-time data directly from NASA’s open data portal.
             </li>
             <li>
-              Visit the <a href="#playground"><strong>Playground</strong></a> section to explore various publicly available APIs.
+              Visit the <a className='instruction_link' href="#playground"><strong>Playground</strong></a> section to explore various publicly available APIs.
             </li>
             <li>
               Each API includes a short description, and you can click on <strong>Learn more</strong> for detailed information about that specific API.
@@ -28,10 +28,10 @@ function Instructions({ darkMode }) {
               Some APIs require a <strong>date</strong> parameter — either <strong>select</strong> your preferred <strong>date</strong> or use the <strong>default</strong> date provided.
             </li>
             <li>
-              Need help? Head over to the <a href='#contact_us'><strong>Contact Us</strong></a> section for assistance or inquiries.
+              Need help? Head over to the <a className='instruction_link' href='#contact_us'><strong>Contact Us</strong></a> section for assistance or inquiries.
             </li>
             <li>
-              Before leaving, please take a moment to <a href='#rateus'><strong>rate your experience</strong></a> — your feedback is highly appreciated!
+              Before leaving, please take a moment to <a className='instruction_link' href='#rateus'><strong>rate your experience</strong></a> — your feedback is highly appreciated!
             </li>
           </ol>
         </div>

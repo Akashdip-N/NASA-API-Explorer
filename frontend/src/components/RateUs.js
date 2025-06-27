@@ -3,7 +3,7 @@ import '../css_file/RateUs.css';
 
 function RateUs() {
   // PORT number to connect to the backend server
-  const PORT = 5000;
+  const PORT = 4000;
   const API_URL = `http://localhost:${PORT}`;
 
   const [rating, setRating] = useState(0);

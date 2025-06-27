@@ -76,11 +76,16 @@ body.dark-mode{
     font-weight: 100;
 }
 
-.instructions-container strong {
+.instruction_link{
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.instructions-container li strong {
     color: var(--primary-color);
 }
 
-.instructions-content .note strong{
+.note strong{
     color: var(--note-color);
     font-weight: 700;
     font-size: 1.2rem;
