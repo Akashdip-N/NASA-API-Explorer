@@ -103,7 +103,12 @@ app.get('/api/nasa', async (req, res) => {
 
       case 'mars':
         url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
-        break;
+        const marsResponse = await axios.get(url);
+        const photos = marsResponse.data.photos.map(photo => ({
+          ...photo,
+          img_src: photo.img_src.replace('http://', 'https://')
+        }));
+        return res.json({ photos });
 
       case 'epic':
         if (date) {
