@@ -1,10 +1,10 @@
 # 🚀 NASA API Explorer
 
-This project is a fullstack React + Express.js application that allows users to explore various NASA APIs such as:-
+This project is a full-stack React + Express.js application that allows users to explore various NASA APIs, such as:-
 </br>1️⃣ Astronomy Picture of the Day
 </br>2️⃣ Mars Rover Photos
 </br>3️⃣ EPIC Earth Imagery
-</br>4️⃣ FInding the Near-Earth Objects speed.
+</br>4️⃣ Finding the Near-Earth Objects' speed.
 </br>5️⃣ Searching the NASA Image and Video Library.
 
 ## 🗂 Folder Structure
@@ -29,7 +29,7 @@ nasa-api-explorer/
 │       ├── css_files/                      # CSS files for styling
 │       │   ├── ContactUs.css               # Styles for Contact Us form
 │       │   ├── Footer.css                  # Styles for Footer component
-│       │   ├── Instructions.css            # Styles for Instructions component
+│       │   ├── Instructions.css            # Styles for the Instructions component
 │       │   ├── Playground.css              # Styles for Playground component
 │       │   ├── RateUs.css                  # Styles for Rate Us component
 │       │   └── TopNav.css                  # Styles for Top Navigation bar
@@ -88,7 +88,7 @@ git clone https://github.com/Akashdip-N/NASA-API-Explorer.git
 cd nasa-api-explorer
 ```
 
-### 2. Add Your NASA API Key to the backend
+### 2. Add your NASA API Key to the backend
  1. A sample `.env.example` file is provided in the `backend/` directory.
  2. Copy the `.env.example` file to `.env` in the `backend/` directory using the following command:
 ```bash
@@ -96,7 +96,7 @@ cp backend/.env.example backend/.env
 ```
  3. Open the `.env` file in a text editor.
  4. Replace the placeholder `your_api_key_here` with your actual NASA API key obtained from [NASA API](https://api.nasa.gov/).
- <br>For example yor api key is `abcdefghijklmnopqrstuvwxyz`, then your `.env` file should look like this:
+ <br>For example, your api key is `abcdefghijklmnopqrstuvwxyz`, then your `.env` file should look like this:
 ```plaintext
 NASA_API_KEY=abcdefghijklmnopqrstuvwxyz
 ```
@@ -115,13 +115,13 @@ If you want to integrate Google Sheets, follow these steps:
 1. Create two Google Sheets:
    - One for storing the ratings given by users.
    - Another for storing user feedback.
-2. Crete the following columns in the respective Google Sheets:
+2. Create the following columns in the respective Google Sheets:
    - **Ratings Sheet**: `Rating`, `Feedback`, `Date`, `Time`
    - **Feedback Sheet**: `Name`, `Email`, `Given_message`, `Date`, `Time`
-3. For both the Google Sheets create a Google Cloud Platform project and enable the Google Sheets API.
+3. For both Google Sheets, create a Google Cloud Platform project and enable the Google Sheets API.
 4. Use the Google Sheets API ULS to connect your application to the Google Sheets you created.
-5. Go to the `backend/` directory and change the `.env` file variable `RATINGS_SHEET_URL` to the URL of the Google sheets where you want to store the ratings.
-6. Change the `.env` file variable `CONTACT_US_URL` to the URL of the Google sheets where you want to store the feedback.
+5. Go to the `backend/` directory and change the `.env` file variable `RATINGS_SHEET_URL` to the URL of the Google Sheets where you want to store the ratings.
+6. Change the `.env` file variable `CONTACT_US_URL` to the URL of the Google Sheets where you want to store the feedback.
 7. Make sure to save the `.env` file.
 
 ### 4. Running the Application
@@ -138,14 +138,14 @@ Open your web browser and navigate to `http://localhost:3000` to access the appl
 * There are tests available for both the frontend and backend.
 ### Frontend Testing
  * The frontend tests are written using Jest and React Testing Library.
- * To run tests for the frontend run the following command inside the `frontend/` directory:
+ * To run tests for the frontend, run the following command inside the `frontend/` directory:
 ```bash
 npm test
 ```
 
 ### Backend Testing
  * The backend tests are written using Jest and Supertest.
- * To run the `backend` test perform the following steps:
+ * To run the `backend` test, perform the following steps:
  * Uncomment some lines in the `backend/index.js` file to enable testing.
  * Then run the following command inside the `backend/` directory:
 ```bash
@@ -159,7 +159,7 @@ The backend provides the following API endpoints:
 - **GET** `/api/nasa/apod`: Fetches Astronomy Picture of the Day.
 - **GET** `/api/nasa/neo`: Fetches Near-Earth Objects data.
 - **GET** `/api/nasa/nasa_image`: Searches the NASA Image and Video Library.
-- **POST** `/api/contact`: Submits users contact form data.
+- **POST** `/api/contact`: Submits user's contact form data.
 - **POST** `/api/rating`: Submits user ratings and feedback.
 
 ## ⚠️ Error Codes and their Solutions
@@ -171,12 +171,12 @@ This project may throw some error codes during the development or deployment pro
 ```
 
 ### 1. 111 Error Code
-This error code indicates that there is an issue with the API key or the request to the NASA API. Ensure that:</br>
+This error code indicates an issue with the API key or the request to the NASA API. Ensure that:</br>
 ✅ Your API key is valid and correctly set in the `.env` file.</br>
 ✅ The `.env` file is properly configured and located in the `backend/` directory.
 
 ### 2. 222 Error Code
-This error code means that the `port number` of the backend server is already in use or the `PORT` variable in the file is different from the one in the backend.
+This error code means that the `port number` of the backend server is already in use, or the `PORT` variable in the file is different from the one in the backend.
 
 To resolve this follow these steps:</br>
 ✅ Check if another instance of the backend server is running. </br>
@@ -184,7 +184,7 @@ To resolve this follow these steps:</br>
 ```plaintext
 PORT=5000
 ```
-✅ Then, open the `frontend/.env` file and you would see somethig like this:
+✅ Then, open the `frontend/.env` file and you will see something like this:
 ```plaintext
 REACT_APP_API_URL=http://localhost:2000/
 ```
@@ -199,16 +199,16 @@ REACT_APP_API_URL=http://localhost:5000/
 
 ## 🚀 Deployment (Optional)
 ✅ To deploy the application, you can use platforms like [Vercel](https://vercel.com/) for the frontend and [Render](https://render.com/) for the backend.
-</br>✅ To do that follow these steps:
+</br>✅ To do that, follow these steps:
   1. Create an account on [Vercel](https://vercel.com/) and [Render](https://render.com/).
-  2. Create two seperate repostories for `Vercel` and `Render` to host the `frontend` and `backend` respectively.
+  2. Create two separate repositories for `Vercel` and `Render` to host the `frontend` and `backend` respectively.
   3. Create a new project on `Vercel` and `Render.com` and link it to the respective `backend` and `frontend` repositories.
   4. Set the following environment variables `Render.com` for the backend:
      - `NASA_API_KEY`
      - `FEEDBACK_SHEET_URL`
      - `CONTACT_US_URL`
   5. After the backend is deployed, create a new project on `Vercel` for the frontend and link it to the `frontend` repository.
-  6. Set the `API_URL` environment variables on the `Render` project as the same URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
+  6. Set the `API_URL` environment variable on the `Render` project to the same URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
   7. After setting the environment variables, deploy the frontend project on `Vercel`.
   8. Once both the frontend and backend are deployed, you can access the application using the URL provided by `Vercel` for the frontend.
 
@@ -222,4 +222,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 💻 View the Project Live
 You can view the live version of this project at [NASA API Explorer](https://versal-project-deployment.vercel.app/).
 
-📝 A small note: Since, application's backend is hosted using the free tier of the `Vercel`, it might take one or two minites to wake up. Sorry for the inconvience caused.
+📝 A small note: Since the application's backend is hosted using the free tier of `Vercel`, it might take one or two minutes to wake up. Sorry for the inconvenience caused.
