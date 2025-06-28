@@ -10,6 +10,23 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+function getDateAndTime() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  const date = `${year}-${month}-${day}`;
+  const time = `${hours}:${minutes}:${seconds}`;
+
+  return { date, time };
+}
+
 app.post('/api/rating', async (req, res) => {
   const { Rating, Feedback } = req.body;
 
@@ -17,12 +34,13 @@ app.post('/api/rating', async (req, res) => {
     return res.status(400).json({ error: 'Missing rating or feedback.' });
   }
 
+  const { date, time } = getDateAndTime();
   const scriptURL = process.env.RATING_SHEET_URL;
 
   try {
-    const response = await axios.post(
+    await axios.post(
       scriptURL,
-      new URLSearchParams({Rating, Feedback }).toString(),
+      new URLSearchParams({ Rating, Feedback, Date: date, Time: time }).toString(),
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -44,15 +62,18 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required.' });
   }
 
+  const { date, time } = getDateAndTime();
   const scriptURL = process.env.CONTACT_US_URL;
 
   try {
-    const response = await axios.post(
+    await axios.post(
       scriptURL,
       new URLSearchParams({
         Name: name,
         Email: email,
         Given_message: message,
+        Date: date,
+        Time: time
       }).toString(),
       {
         headers: {
@@ -67,11 +88,6 @@ app.post('/api/contact', async (req, res) => {
     res.status(500).json({ error: 'Failed to submit message.', detail: error.message });
   }
 });
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
-
 
 app.get('/api/nasa', async (req, res) => {
   const apiKey = process.env.NASA_API_KEY;
