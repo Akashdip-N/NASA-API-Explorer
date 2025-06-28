@@ -62,7 +62,7 @@ function RateUs() {
 
             <form ref={formRef} onSubmit={handleSubmit} name="submit-to-google-sheet" className="feedback-form">
               <textarea
-                placeholder="Share your suggestions or feedback..."
+                placeholder="Share your experience or suggestions with us..."
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 required

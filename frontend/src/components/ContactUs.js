@@ -47,7 +47,7 @@ function ContactUs() {
       {!submitted ? (
         <>
           <h1>📬 Contact Us</h1>
-          <p className='contactus-message'>Have questions, feedback, or just want to say hello? We’d love to hear from you.</p>
+          <p className='contactus-message'>Have questions or need help? Just send us a message using this form—we’ll get back to you as soon as possible! 😄</p>
           <form onSubmit={handleSubmit} className="contact-form">
             <input
               type="text"
@@ -67,7 +67,7 @@ function ContactUs() {
             />
             <textarea
               name="message"
-              placeholder="Your Message"
+              placeholder="Message you want to send us"
               value={form.message}
               onChange={handleChange}
               rows="5"
