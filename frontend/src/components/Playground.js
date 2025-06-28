@@ -64,9 +64,7 @@ function Playground({ darkMode }) {
   };
 
   const fetchData = () => {
-    // PORT number to connect to the backend server
-    const PORT = 4000;
-    const API_URL = `http://localhost:${PORT}`;
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const timeout = 5000;
     setLoading(true);
@@ -104,7 +102,7 @@ function Playground({ darkMode }) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeout);
 
-    fetch(`${API_URL}/api/nasa?${query}`, { signal: controller.signal })
+    fetch(`${API_URL}api/nasa?${query}`, { signal: controller.signal })
       .then(async (res) => {
         clearTimeout(timer);
         const result = await res.json();

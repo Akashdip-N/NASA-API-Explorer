@@ -2,9 +2,7 @@ import { useState, useRef } from 'react';
 import '../css_file/RateUs.css';
 
 function RateUs() {
-  // PORT number to connect to the backend server
-  const PORT = 4000;
-  const API_URL = `http://localhost:${PORT}`;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
@@ -17,7 +15,7 @@ function RateUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`${API_URL}/api/rating`, {
+    fetch(`${API_URL}api/rating`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

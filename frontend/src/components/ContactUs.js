@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import '../css_file/ContactUs.css';
 
 function ContactUs() {
-  // PORT number to connect to the backend server
-  const PORT = 5000;
-  const API_URL = `http://localhost:${PORT}`;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +16,7 @@ function ContactUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`${API_URL}/api/contact`, {
+    fetch(`${API_URL}api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
