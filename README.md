@@ -46,15 +46,15 @@ nasa-api-explorer/
 │       ├── setupTests.js                   # Setup for Jest tests
 │       └── reportWebVitals.js              # Web Vitals reporting
 │
-│   │── .env                                # Example environment variables file for the frontend
-│   │── .env.example                        # Example environment variables file for the frontend
+│   │── .env                                # Example environment variables file for frontend
+│   │── .env.example                        # Example environment variables file for frontend
 │   └── package.json
 │
 ├── backend/                                # Express.js backend
 │   ├── index.js                            # API routes and server logic
 │   ├── index.test.js                       # Backend test file (Jest)
-│   ├── .env                                # Environment variables file for the backend
-│   ├── .env.example                        # Example environment variables file for the backend
+│   ├── .env                                # Environment variables file for backend
+│   ├── .env.example                        # Example environment variables file for backend
 │   └── package.json
 │
 ├── .gitignore                              # Git ignore file
