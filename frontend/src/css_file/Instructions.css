@@ -116,11 +116,22 @@ body.dark-mode{
     margin-top: -0.2rem;
 }
 
+.mobile-instructions {
+  display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .desktop-instructions {
+    display: none;
+  }
+
+  .mobile-instructions {
+    display: block;
+  }
 
   .instructions_wrapper {
-    margin-top: -4.5rem;
+    margin-top: -2.8rem;
     flex-direction: column;
     align-items: left;
     padding: 1rem;
@@ -132,7 +143,7 @@ body.dark-mode{
   }
 
   .instructions-container {
-    margin: -2.5rem 0 0 0;
+    margin: -2.5rem 0 -0.5rem 0;
     width: 100%;
   }
 
@@ -141,11 +152,16 @@ body.dark-mode{
   }
 
   .instructions_sub {
+    margin-top: -0.2rem;
     font-size: 1rem;
   }
 
   .instructions-container p {
-    margin-bottom: -0.5rem;
+    margin-bottom: -1.5rem;
+  }
+
+  .instructions-container ol {
+    margin-left: -1rem;
   }
 
   .instructions-container li {
@@ -171,7 +187,16 @@ body.dark-mode{
   }
 
   .important {
-    margin-top: 1.5rem;
-    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .note {
+    font-size: 1.1rem;
+    margin-top: -1rem;
+  }
+
+  .enjoy {
+    margin-top: -0.5rem;
   }
 }
