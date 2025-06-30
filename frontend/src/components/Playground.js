@@ -198,7 +198,7 @@ function Playground({ darkMode }) {
           <div>
             <h2>Search Results for the query: {submittedQuery}</h2>
             {data?.collection?.items?.length === 0 ? (
-              <p className="error">🛑 No media found for the given keyword. Please try another search term or select another file type.</p>
+              <p className="error">No media found for the given keyword. Please try another search term or select another file type.</p>
             ) : (
               data?.collection?.items?.map((item, idx) => {
                 const title = item.data?.[0]?.title;

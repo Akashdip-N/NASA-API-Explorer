@@ -10,7 +10,7 @@ function Footer({ darkMode, setDarkMode }) {
                 <div className="footer-content">
                     <div className="logo-and-text">
                         <img src={logo} className="footer-logo" alt='logo_footer'/>
-                        <h1 className="logo-text">DATA EXPLORER</h1>
+                        <h1 className="logo-text">API EXPLORER</h1>
                     </div>
                     <div className='darkmode-toggle'>
                         <h2>Select visibility mode</h2>

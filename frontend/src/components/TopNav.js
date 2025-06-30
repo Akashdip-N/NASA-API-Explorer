@@ -12,7 +12,7 @@ function TopNav() {
       <div className="top-header">
         <div className="logo-container">
           <img src={logo_image} alt="Logo" className="logo" />
-          <h1 className="logo-text">DATA EXPLORER</h1>
+          <h1 className="logo-text">API EXPLORER</h1>
         </div>
 
         <div className="toggle-wrapper">

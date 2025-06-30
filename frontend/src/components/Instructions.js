@@ -7,7 +7,7 @@ function Instructions({ darkMode }) {
     <div className="instructions_wrapper" id="instructions">
       <div className='desktop-instructions'>
         <h1 className='welcome'>
-          Welcome to the <strong>NASA Data Explorer</strong>!
+          Welcome to the <strong>NASA API Explorer</strong>!
         </h1>
         <div className='instructions-and-image'>
           <div className='instructions-container'>
@@ -55,7 +55,7 @@ function Instructions({ darkMode }) {
       <div className='mobile-instructions'>
         <div className="instructions_wrapper" id="instructions">
           <h1 className='welcome'>
-            Welcome to the <strong>NASA Data Explorer</strong>!
+            Welcome to the <strong>NASA API Explorer</strong>!
           </h1>
           <div className='instructions-and-image'>
             <div className='instructions-container'>
