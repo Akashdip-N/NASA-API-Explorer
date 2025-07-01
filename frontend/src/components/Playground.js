@@ -102,7 +102,7 @@ function Playground({ darkMode }) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeout);
 
-    fetch(`${API_URL}api/nasa?${query}`, { signal: controller.signal })
+    fetch(`${API_URL}/api/nasa?${query}`, { signal: controller.signal })
       .then(async (res) => {
         clearTimeout(timer);
         const result = await res.json();
