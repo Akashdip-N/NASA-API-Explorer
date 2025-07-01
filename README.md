@@ -13,9 +13,10 @@ nasa-api-explorer/
 │
 ├── frontend/                               # React frontend
 │   ├── public/                             # Static assets
-│   │   ├── index.html
-│   │   ├── manifest.json
-│   │   └── robots.txt
+│   │   ├── index.html                      # Main HTML file
+│   │   ├── manifest.json                   # Web app manifest
+│   │   └── robots.txt                      # Robots.txt file
+│   │
 │   └── src/                                # Source code
 │       ├── components/                     # Reusable components
 │       │   ├── ContactUs.js                # Contact Us form
@@ -46,20 +47,20 @@ nasa-api-explorer/
 │       ├── setupTests.js                   # Setup for Jest tests
 │       └── reportWebVitals.js              # Web Vitals reporting
 │
-│   │── .env                                # Environment variables file for frontend
-│   │── .env.example                        # Example environment variables file for frontend
-│   └── package.json
+│   │── .env                                # Frontend environment variables file
+│   │── .env.example                        # Example frontend environment variables file
+│   └── package.json                        # Frontend package file
 │
 ├── backend/                                # Express.js backend
 │   ├── index.js                            # API routes and server logic
 │   ├── index.test.js                       # Backend test file (Jest)
-│   ├── .env                                # Environment variables file for backend
-│   ├── .env.example                        # Example environment variables file for backend
-│   └── package.json
+│   ├── .env                                # Backend environment variables file
+│   ├── .env.example                        # Example backend environment variables file
+│   └── package.json                        # Backend package file
 │
 ├── .gitignore                              # Git ignore file
 ├── package.json                            # Root-level script runner
-├── README.md                               # Project documentation
+├── README.md                               # Readme file, containing project details
 └── LICENSE                                 # License file
 ```
 
@@ -152,7 +153,7 @@ npm test
 npm test
 ```
 
-## 🌐 API Endpoints
+## 🌐 Backend API Endpoints
 The backend provides the following API endpoints:
 - **GET** `/api/nasa/epic`: Fetches EPIC Earth Imagery.
 - **GET** `/api/nasa/rover`: Fetches Mars Rover Photos.
@@ -163,7 +164,8 @@ The backend provides the following API endpoints:
 - **POST** `/api/rating`: Submits user ratings and feedback.
 
 ## ⚠️ Error Codes and their Solutions
-This project may throw some error codes during the development or deployment process. Below are the common error codes and their solutions:
+This project may throw some error codes during the development or deployment process.
+</br>Below are the common error codes and their solutions:
 
 ```plaintext
 111 - API Key Error
@@ -171,15 +173,16 @@ This project may throw some error codes during the development or deployment pro
 ```
 
 ### 1. 111 Error Code
-This error code indicates an issue with the API key or the request to the NASA API. Ensure that:</br>
+This error code indicates an issue with the API key or the request to the NASA API.
+<br>Ensure that:</br>
 ✅ Your API key is valid and correctly set in the `.env` file.</br>
 ✅ The `.env` file is properly configured and located in the `backend/` directory.
 
 ### 2. 222 Error Code
 This error code means that the `port number` of the backend server is already in use, or the `PORT` variable in the file is different from the one in the backend.
 
-To resolve this follow these steps:</br>
-✅ Check if another instance of the backend server is running. </br>
+To resolve this follow these steps:
+</br>✅ Check if another instance of the backend server is running. </br>
 ✅ If so, first change the `PORT` variable in the `backend/.env` file. For example, change it to `5000` like this:
 ```plaintext
 PORT=5000
@@ -188,29 +191,36 @@ PORT=5000
 ```plaintext
 REACT_APP_API_URL=http://localhost:2000/
 ```
-✅ Change the `2000` to the new port number you set in the `backend/.env` file, so it should look like this:
+✅ Change the `2000` value with the new `port number` you set in the `backend/.env` file e.g. `5000`, so it should look like this:
 ```plaintext
 REACT_APP_API_URL=http://localhost:5000/
 ```
 ✅ Save the changes in both `.env` files and restart the application.
 
-
 ‼️ Important Note: Please make sure that the `PORT` variable in the `backend/.env` file is never set to `3000` as it is the default port for the React frontend. If you set it to `3000`, it will conflict with the frontend server and cause issues. ‼️
 
 ## 🚀 Deployment (Optional)
 ✅ To deploy the application, you can use platforms like [Vercel](https://vercel.com/) for the frontend and [Render](https://render.com/) for the backend.
-</br>✅ To do that, follow these steps:
-  1. Create an account on [Vercel](https://vercel.com/) and [Render](https://render.com/).
-  2. Create two separate repositories for `Vercel` and `Render` to host the `frontend` and `backend` respectively.
-  3. Create a new project on `Vercel` and `Render.com` and link it to the respective `backend` and `frontend` repositories.
-  4. Set the following environment variables `Render.com` for the backend:
-     - `NASA_API_KEY`
-     - `FEEDBACK_SHEET_URL`
-     - `CONTACT_US_URL`
-  5. After the backend is deployed, create a new project on `Vercel` for the frontend and link it to the `frontend` repository.
-  6. Set the `API_URL` environment variable on the `Render` project to the same URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
-  7. After setting the environment variables, deploy the frontend project on `Vercel`.
-  8. Once both the frontend and backend are deployed, you can access the application using the URL provided by `Vercel` for the frontend.
+
+⚠️ Important Note:- Before starting the below steps, make sure to fork the repository to your own GitHub account and de-select from the option `Copy the main branch only` while forking.
+
+### Hosting the backend (Render.com)
+   ✅ Create an account on [Render](https://render.com/).
+   </br>✅ Create a new `Web Serive` project on `Render.com` for the backend.
+   </br>✅ Either copy the `GitHub` repository link or go with the forked repository and link it to the `Render` project.
+   </br>✅ Make sure to select the correct branch i.e. `Backend-deployment` and copy all the environment variables from the `.env` file in the `backend/` directory from your local deployed settings and paste them into the `Render` project environment variables section.
+   </br>✅ Set the `Start Command` to `node index.js` if it is not set automatically in the Render project settings.
+   </br>✅ Click on the `Deploy Web Service` button to deploy the backend.
+   </br>✅ After the backend is deployed, you will get a URL for the backend, copy that URL as you will need it for the frontend deployment.
+
+   ### Hosting the frontend (Vercel.com)
+   ✅ Create an account on [Vercel](https://vercel.com/).
+   </br>✅ Create a new project on `Vercel` for the frontend using the forked repository.
+   </br>✅ Choose the `Import Project` option and select the forked repository.
+   </br>✅ Make sure to select the correct directory i.e. `frontend/` and press on continue.
+   </br>✅ In the `Environment Variables` section, set the `API_URL` variable to the URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
+   </br>✅ Click on the `Deploy` button to deploy the frontend.
+   </br>✅ After the frontend is deployed, you will get a URL for the frontend, which you can use to access the application.
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
