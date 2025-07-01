@@ -16,7 +16,7 @@ function ContactUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`${API_URL}api/contact`, {
+    fetch(`${API_URL}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

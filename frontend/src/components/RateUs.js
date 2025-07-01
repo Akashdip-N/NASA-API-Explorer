@@ -15,7 +15,7 @@ function RateUs() {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`${API_URL}api/rating`, {
+    fetch(`${API_URL}/api/rating`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
