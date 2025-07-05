@@ -181,7 +181,7 @@ This error code indicates an issue with the API key or the request to the NASA A
 ### 2. 222 Error Code
 This error code means that the `port number` of the backend server is already in use, or the `PORT` variable in the file is different from the one in the backend.
 
-To resolve this follow these steps:
+To resolve this, follow these steps:
 </br>✅ Check if another instance of the backend server is running. </br>
 ✅ If so, first change the `PORT` variable in the `backend/.env` file. For example, change it to `5000` like this:
 ```plaintext
@@ -191,7 +191,7 @@ PORT=5000
 ```plaintext
 REACT_APP_API_URL=http://localhost:2000/
 ```
-✅ Change the `2000` value with the new `port number` you set in the `backend/.env` file e.g. `5000`, so it should look like this:
+✅ Change the `2000` value with the new `port number` you set in the `backend/.env` file, e.g. `5000`, so it should look like this:
 ```plaintext
 REACT_APP_API_URL=http://localhost:5000/
 ```
@@ -206,18 +206,18 @@ REACT_APP_API_URL=http://localhost:5000/
 
 ### Hosting the backend (Render.com)
    ✅ Create an account on [Render](https://render.com/).
-   </br>✅ Create a new `Web Serive` project on `Render.com` for the backend.
+   </br>✅ Create a new `Web Service` project on `Render.com` for the backend.
    </br>✅ Either copy the `GitHub` repository link or go with the forked repository and link it to the `Render` project.
-   </br>✅ Make sure to select the correct branch i.e. `Backend-deployment` and copy all the environment variables from the `.env` file in the `backend/` directory from your local deployed settings and paste them into the `Render` project environment variables section.
+   </br>✅ Make sure to select the correct branch, i.e. `Backend-deployment`, and copy all the environment variables from the `.env` file in the `backend/` directory from your local deployed settings and paste them into the `Render` project environment variables section.
    </br>✅ Set the `Start Command` to `node index.js` if it is not set automatically in the Render project settings.
    </br>✅ Click on the `Deploy Web Service` button to deploy the backend.
-   </br>✅ After the backend is deployed, you will get a URL for the backend, copy that URL as you will need it for the frontend deployment.
+   </br>✅ After the backend is deployed, you will get a URL for the backend; copy that URL as you will need it for the frontend deployment.
 
    ### Hosting the frontend (Vercel.com)
    ✅ Create an account on [Vercel](https://vercel.com/).
    </br>✅ Create a new project on `Vercel` for the frontend using the forked repository.
    </br>✅ Choose the `Import Project` option and select the forked repository.
-   </br>✅ Make sure to select the correct directory i.e. `frontend/` and press on continue.
+   </br>✅ Make sure to choose the correct directory, i.e. `frontend/` and press continue.
    </br>✅ In the `Environment Variables` section, set the `API_URL` variable to the URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
    </br>✅ Click on the `Deploy` button to deploy the frontend.
    </br>✅ After the frontend is deployed, you will get a URL for the frontend, which you can use to access the application.
@@ -230,6 +230,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 </br>✅ Please fork the repository, create a new branch, and submit a pull request with your changes.
 
 ## 💻 View the Project Live
-You can view the live version of this project at [NASA API Explorer](https://versal-project-deployment.vercel.app/).
+You can view the live version of this project at [NASA API Explorer](https://nasa-api-explorer-dusky.vercel.app/).
 
 📝 A small note: Since the application's backend is hosted using the free tier of `Vercel`, it might take one or two minutes to wake up. Sorry for the inconvenience caused.
