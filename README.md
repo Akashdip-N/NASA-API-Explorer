@@ -202,22 +202,22 @@ REACT_APP_API_URL=http://localhost:5000/
 ## 🚀 Deployment (Optional)
 ✅ To deploy the application, you can use platforms like [Vercel](https://vercel.com/) for the frontend and [Render](https://render.com/) for the backend.
 
-⚠️ Important Note:- Before starting the below steps, make sure to fork the repository to your own GitHub account and de-select from the option `Copy the main branch only` while forking.
+⚠️ Important Note:- Before starting the steps below, make sure to fork the repository to your own GitHub account and deselect the option `Copy the main branch only` while forking.
 
 ### Hosting the backend (Render.com)
    ✅ Create an account on [Render](https://render.com/).
    </br>✅ Create a new `Web Service` project on `Render.com` for the backend.
-   </br>✅ Either copy the `GitHub` repository link or go with the forked repository and link it to the `Render` project.
+   </br>✅ Either copy the `GitHub` repository link or use the forked repository and link it to the `Render` project.
    </br>✅ Make sure to select the correct branch, i.e. `Backend-deployment`, and copy all the environment variables from the `.env` file in the `backend/` directory from your local deployed settings and paste them into the `Render` project environment variables section.
    </br>✅ Set the `Start Command` to `node index.js` if it is not set automatically in the Render project settings.
    </br>✅ Click on the `Deploy Web Service` button to deploy the backend.
-   </br>✅ After the backend is deployed, you will get a URL for the backend; copy that URL as you will need it for the frontend deployment.
+   </br>✅ After the backend is deployed, you will get a URL for the backend; copy that URL, as you will need it for the frontend deployment.
 
    ### Hosting the frontend (Vercel.com)
    ✅ Create an account on [Vercel](https://vercel.com/).
    </br>✅ Create a new project on `Vercel` for the frontend using the forked repository.
    </br>✅ Choose the `Import Project` option and select the forked repository.
-   </br>✅ Make sure to choose the correct directory, i.e. `frontend/` and press continue.
+   </br>✅ Make sure to choose the correct directory, i.e. `frontend/`, and press continue.
    </br>✅ In the `Environment Variables` section, set the `API_URL` variable to the URL of the deployed backend, e.g., `https://your-backend-url.onrender.com`.
    </br>✅ Click on the `Deploy` button to deploy the frontend.
    </br>✅ After the frontend is deployed, you will get a URL for the frontend, which you can use to access the application.
@@ -232,4 +232,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 💻 View the Project Live
 You can view the live version of this project at [NASA API Explorer](https://nasa-api-explorer-dusky.vercel.app/).
 
-📝 A small note: Since the application's backend is hosted using the free tier of `Vercel`, it might take one or two minutes to wake up. Sorry for the inconvenience caused.
+📝 A small note: Since the application's backend is hosted using the free tier of `Render`, it might take one or two minutes to wake up. Sorry for the inconvenience caused.
